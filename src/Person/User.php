@@ -2,15 +2,17 @@
 
 namespace Project\Api\Person;
 
-class Name
+class User
 {
     /**
+     * @param int $id
      * @param string $firstName
      * @param string $lastName
      */
 
     public function __construct
     (
+        private int $id,
         private string $firstName,
         private string $lastName
     )
@@ -19,7 +21,19 @@ class Name
 
     public function __toString(): string
     {
-       return $this->firstName. ' ' . $this->lastName;
+       return "User id: {$this->getId()}.{$this->getFirstName()} {$this->getLastName()}".PHP_EOL;
+    }
+
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
 
@@ -45,6 +59,9 @@ class Name
     {
         $this->lastName = $lastName;
     }
+
+
+
 
 
 

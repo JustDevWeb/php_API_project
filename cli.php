@@ -1,7 +1,7 @@
 <?php
 
-use Project\Api\Person\{Person,Name};
-use Project\Api\Blog\{User,Post};
+use Project\Api\Person\{User};
+use Project\Api\Blog\{Comment,Post};
 
 
 //spl_autoload_register('load');
@@ -18,20 +18,23 @@ require __DIR__ ."/vendor/autoload.php";
 //    }
 //}
 
-$faker = Faker\Factory::create('ru_RU');
-echo $faker->name() . PHP_EOL;
+$faker = Faker\Factory::create('en_US');
 
-$user = new User(1,"Nikolay","Admin");
-echo $user;
+$user = new User($faker->randomDigitNotNull(),$faker->firstName('female'),$faker->lastName('female'));
+$post = new Post($faker->randomDigitNotNull(),$user,$faker->sentence(5),$faker->text(100));
+$comment = new Comment($faker->randomDigitNotNull(),$user,$post,$faker->text(80));
 
-$name = new Name('John','Malkovich');
-$person = new Person($name,new DateTimeImmutable());
-$post = new Post(1,
-    new Person (
-        new Name('Valeriy','Nikolayevich'),
-        new DateTimeImmutable()
-    ),'Всем привет!' . PHP_EOL
-);
+$commandLineValue = $argv[1] ?? null;
 
 
-echo $post;
+if ($commandLineValue === "user"){
+    echo $user;
+}elseif ($commandLineValue === "post"){
+    echo $post;
+}elseif ($commandLineValue === "comment"){
+    echo $comment;
+}
+
+
+
+
