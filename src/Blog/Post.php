@@ -2,12 +2,11 @@
 
 namespace Project\Api\Blog;
 
-use Project\Api\Person\User;
 
 class Post
 {
     /**
-     * @param int $id
+     * @param UUID $uuid
      * @param User $authorId
      * @param string $title
      * @param string $text
@@ -15,8 +14,8 @@ class Post
 
     public function __construct
     (
-        private int $id,
-        private User $authorId,
+        private UUID $uuid,
+        private User $authorUUID,
         private string $title,
         private string $text
     )
@@ -25,31 +24,19 @@ class Post
 
     public function __toString()
     {
-        return " Post id: {$this->id}.\n Author id: {$this->getAuthorId()}.\n Title: {$this->getTitle()}\n Text: {$this->getText()}";
+        return " Post uuid: {$this->uuid}.\n Author id: {$this->getAuthorId()}.\n Title: {$this->getTitle()}\n Text: {$this->getText()}";
     }
 
 
-    public function getId(): int
+    public function getUUID(): string
     {
-        return $this->id;
+        return $this->uuid;
     }
 
 
-    public function setId(int $id): void
+    public function getAuthorUUID(): string
     {
-        $this->id = $id;
-    }
-
-
-    public function getAuthorId(): int
-    {
-        return $this->authorId->getId();
-    }
-
-
-    public function setAuthorId(User $authorId): void
-    {
-        $this->authorId = $authorId;
+        return $this->authorUUID->getUUID();
     }
 
 
