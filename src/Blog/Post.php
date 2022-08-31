@@ -7,7 +7,7 @@ class Post
 {
     /**
      * @param UUID $uuid
-     * @param User $authorId
+     * @param User $authorUUID
      * @param string $title
      * @param string $text
      */

@@ -7,9 +7,9 @@ class Comment
 {
 
     /**
-     * @param UUID $id
+     * @param UUID $uuid
      * @param User $authorUUID
-     * @param Post $postId
+     * @param Post $postUUID
      * @param string $text
      */
 
@@ -23,7 +23,7 @@ class Comment
     {}
 
    public function __toString(): string {
-        return "{$this->getUUID()}. Author with id {$this->getAuthorId()}, wrote the '{$this->getText()}' to the post with id {$this->getPostId()}".PHP_EOL;
+        return "{$this->getUUID()}. Author with id {$this->getAuthorUUID()}, wrote the '{$this->getText()}' to the post with id {$this->getPostUUID()}".PHP_EOL;
    }
 
 
